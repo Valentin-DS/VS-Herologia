@@ -35,7 +35,7 @@ namespace Test3D
             line = 2;
             column = 0;
             timer = 0;
-            this.model = new GraphicModel(texture, new Material(), model, position);
+            this.model = new GraphicModel("Lissandra", "Lissandra", texture, new Material(), model, position);
             currentMovementMode = movementMode.STAND;
         }
 

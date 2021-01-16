@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace Test3D
 {
     public class GraphicModel
     {
+        protected string importName;
+        protected string instanceName;
         protected Texture2D[] textures;
         protected Texture2D texture;
         protected Texture2D[] normalMaps;
@@ -20,29 +23,55 @@ namespace Test3D
         protected Matrix mMatrix;
         protected Material material;
 
-        public GraphicModel(Texture2D[] textures, Material material, Model model, Matrix mMatrix)
+        public Matrix GetMatrix()
+        {
+            return this.mMatrix;
+        }
+
+        public string GetInstanceName()
+        {
+            return this.instanceName;
+        }
+
+        public string GetImportName()
+        {
+            return this.importName;
+        }
+
+        public Model GetModel()
+        {
+            return this.model;
+        }
+
+        public GraphicModel(string importName, string instanceName, Texture2D[] textures, Material material, Model model, Matrix mMatrix)
         {
             this.textures = textures;
             this.material = material;
             this.model = model;
             this.mMatrix = mMatrix;
+            this.importName = importName;
+            this.instanceName = instanceName;
             defaultTexture = true;
             normalMapped = false;
         }
 
-        public GraphicModel(Texture2D[] textures, Texture2D[] normalMaps, Material material, Model model, Matrix mMatrix)
+        public GraphicModel(string importName, string instanceName, Texture2D[] textures, Texture2D[] normalMaps, Material material, Model model, Matrix mMatrix)
         {
             this.textures = textures;
             this.normalMaps = normalMaps;
             this.material = material;
             this.model = model;
             this.mMatrix = mMatrix;
+            this.importName = importName;
+            this.instanceName = instanceName;
             defaultTexture = true;
             normalMapped = true;
         }
 
-        public GraphicModel(Texture2D texture, Material material, Model model, Matrix mMatrix)
+        public GraphicModel(string importName, string instanceName, Texture2D texture, Material material, Model model, Matrix mMatrix)
         {
+            this.importName = importName;
+            this.instanceName = instanceName;
             this.texture = texture;
             this.material = material;
             this.model = model;
@@ -79,7 +108,8 @@ namespace Test3D
                     {
                         if (textures != null && textures[i] != null)
                         {
-                            if(normalMapped && normalMaps[i] != null) currentEffect.Parameters["xNormalMap"].SetValue(normalMaps[i]);
+                            if (normalMapped && normalMaps[i] != null)
+                                currentEffect.Parameters["xNormalMap"].SetValue(normalMaps[i]);
                             currentEffect.Parameters["xTexture"].SetValue(textures[i]);
                         }
                     }
@@ -91,9 +121,7 @@ namespace Test3D
                     if (normalMapped && normalMaps != null)
                     {
                         if (normalMaps[i] != null)
-                        {
                             currentEffect.CurrentTechnique = currentEffect.Techniques["NormalTex"];
-                        }
                     }
                     currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
                     currentEffect.Parameters["xWorldInverseTranspose"].SetValue(Matrix.Transpose(Matrix.Invert(mesh.ParentBone.Transform * mMatrix)));
@@ -117,6 +145,7 @@ namespace Test3D
 
                     i++;
                 }
+                
                 mesh.Draw();
             }
         }

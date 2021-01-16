@@ -10,7 +10,7 @@ namespace Test3D
         GraphicsDeviceManager graphics;
         GraphicsDevice device;
 
-        Camera camera;
+        public Camera camera;
         Effect shader;
 
         SpriteBatch spriteBatch;
@@ -35,13 +35,12 @@ namespace Test3D
         protected override void Initialize()
         {
             ManageKeys.initialize();
-
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.PreferMultiSampling = true;
             GraphicsDevice.PresentationParameters.MultiSampleCount = 8;
             graphics.ApplyChanges();
 
-            Window.Title = "Herologia Prototype";
+            Window.Title = "Herologia - Vertical Slice";
 
             camera = new Camera(new Vector3(0.5f,3f,8f), new Vector3(0.5f, -0.5f, 0.5f), graphics);
 
@@ -64,7 +63,7 @@ namespace Test3D
             //Light red = new Light(new Vector3(5,3,5), new Vector4(1,0,0,1), 1, 8);
             //Light green = new Light(new Vector3(5, 3, 15), new Vector4(0, 1, 0, 1), 1, 8);
 
-            currentLevel = new Solbourg();
+            currentLevel = new Workspace(mc);
             currentLevel.Load(Content, shader);
         }
 
@@ -95,18 +94,16 @@ namespace Test3D
             GraphicsDevice.Clear(Color.Black);
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-
             currentLevel.Draw(camera);
-
-            mc.Draw(camera);
-
             spriteBatch.Begin();
-
             spriteBatch.Draw(healthBar, new Rectangle(10, 10, 170, 40), Color.White);
-            spriteBatch.DrawString(sf, mc.getPositionOnGrid().X + " " + mc.getPositionOnGrid().Y, new Vector2(0, 0), Color.White);
-
+            /*
+            spriteBatch.DrawString(sf, (camera.getPosition().X - currentLevel.models2D[0].GetMatrix().Translation.X).ToString(), new Vector2(0, 0), Color.Red);
+            spriteBatch.DrawString(sf, (camera.getPosition().Y - currentLevel.models2D[0].GetMatrix().Translation.Y).ToString(), new Vector2(0, 15), Color.Red);
+            spriteBatch.DrawString(sf, (camera.getPosition().Z - currentLevel.models2D[0].GetMatrix().Translation.Z).ToString(), new Vector2(0, 30), Color.Red);
+            spriteBatch.DrawString(sf, camera.getProjection().ToString(), new Vector2(0, 45), Color.Red);
+            */
             spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }
