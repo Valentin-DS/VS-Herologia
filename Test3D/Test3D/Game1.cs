@@ -63,7 +63,7 @@ namespace Test3D
             //Light red = new Light(new Vector3(5,3,5), new Vector4(1,0,0,1), 1, 8);
             //Light green = new Light(new Vector3(5, 3, 15), new Vector4(0, 1, 0, 1), 1, 8);
 
-            currentLevel = new Workspace(mc);
+            currentLevel = new Solbourg(mc);
             currentLevel.Load(Content, shader);
         }
 

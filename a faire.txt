@@ -1,17 +1,17 @@
-grange
-muraille
-grand edifice avec balcon
-fontaine
+grange OK
+muraille OK
+fontaine OK
+palace OK
+puits OK
+
+grand edifice avec balcon 
 clotures
 dalles en pierre
 maisons collées
 autre maison deux etages
-palace
-buisson taillés
+buisson taillés 
 carrière de piere
 chemin de terre (rousse et jaune)
-fontaine
-puits
 commerce
 taverne
 restaurant
