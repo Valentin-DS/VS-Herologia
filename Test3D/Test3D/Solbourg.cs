@@ -36,7 +36,7 @@ namespace Test3D
             Texture2D[] textures = new Texture2D[7];
             Texture2D[] normals = new Texture2D[7];
 
-            this.AddModel(Content, textures, "Solbourg_Sol", "Sol_1", shader, new Material(0.8f, 1f, 0f, 1), Matrix.CreateScale(0.03f), new Vector3(5f, -1, 0f), ModelType.ThreeDimensional);
+            this.AddModel(Content, textures, "Solbourg_Sol", "Sol_1", shader, new Material(0.8f, 1f, 0f, 1), Matrix.CreateScale(0.03f), new Vector3(5f, -1, 5f), ModelType.ThreeDimensional);
             this.AddModel(Content, textures, normals, "Solbourg_Maison", "Maison_1", shader, new Material(1f, 1f, 0f, 1f), Matrix.CreateScale(0.01f), new Vector3(0f, -1f, 10f), ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Fontaine", "Fontaine_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.0025f), new Vector3(9f, -1f, 10f), ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Muraille", "Muraille_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-10f, -1, -10f), ModelType.ThreeDimensional);
@@ -45,6 +45,8 @@ namespace Test3D
             this.AddModel(textures, "Solbourg_Buisson", "Buisson_2", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(8f, -1, 5.05f), ModelType.TwoDimensional);
             this.AddModel(textures, "Solbourg_Buisson", "Buisson_3", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(8f, -1, 4.05f), ModelType.TwoDimensional);
             this.AddModel(textures, "Solbourg_Buisson", "Buisson_4", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(10f, -1, 7.05f), ModelType.TwoDimensional);
+            this.AddModel(Content, textures, "Solbourg_Palace", "Palace_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.0015f), new Vector3(0, -1, -10f), ModelType.ThreeDimensional);
+
 
             //ici, on importe le fichier de collision
             using (StreamReader stream = new StreamReader(Content.RootDirectory + @"\..\..\..\..\.." + "\\map\\Solbourg.txt"))
@@ -77,7 +79,6 @@ namespace Test3D
 
         public override void Update(GameTime gt)
         {
-            //this.models2D.OrderByDescending(model => (Camera.GetPosition().Z - model.GetMatrix().Translation.Z));
             //vide pour l'instant, utile pour faire des tests, sur les lumières ou les objets mobiles par exemple
         }
 
