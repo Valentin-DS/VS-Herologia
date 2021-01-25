@@ -3,6 +3,7 @@ muraille OK
 fontaine OK
 palace OK
 puits OK
+commerce OK
 
 grand edifice avec balcon 
 clotures
@@ -12,7 +13,6 @@ autre maison deux etages
 buisson taillés 
 carrière de piere
 chemin de terre (rousse et jaune)
-commerce
 taverne
 restaurant
 pin parasol géant
