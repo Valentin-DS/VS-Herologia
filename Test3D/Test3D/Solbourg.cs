@@ -15,7 +15,6 @@ namespace Test3D
     {
         public Solbourg(MainCharacter mc)
         {
-            this.objects = new List<object>();
             this.models3D = new List<GraphicModel>();
             this.models2D = new List<GraphicModel>();
             this.characters = new List<Character>()

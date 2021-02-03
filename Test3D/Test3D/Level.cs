@@ -14,7 +14,6 @@ namespace Test3D
     public abstract class Level
     {
         public enum ModelType { TwoDimensional, ThreeDimensional }
-        protected List<object> objects;
         protected List<GraphicModel> models3D;
         public List<GraphicModel> models2D;
         protected List<Character> characters;

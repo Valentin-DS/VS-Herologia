@@ -4,6 +4,7 @@ fontaine OK
 palace OK
 puits OK
 commerce OK
+restaurant OK
 
 grand edifice avec balcon 
 clotures
@@ -14,5 +15,4 @@ buisson taillés
 carrière de piere
 chemin de terre (rousse et jaune)
 taverne
-restaurant
 pin parasol géant
