@@ -143,7 +143,7 @@ namespace Test3D
 
                     currentEffect.Parameters["xLightNumber"].SetValue(Light.getLightNumber());
 
-                    i++;
+                    i++;                   
                 }
                 
                 mesh.Draw();

@@ -5,6 +5,7 @@ palace OK
 puits OK
 commerce OK
 restaurant OK
+chemin de terre (rousse et jaune) OK
 
 grand edifice avec balcon 
 clotures
@@ -13,6 +14,5 @@ maisons collées
 autre maison deux etages
 buisson taillés 
 carrière de piere
-chemin de terre (rousse et jaune)
 taverne
 pin parasol géant

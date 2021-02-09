@@ -36,7 +36,7 @@ namespace Test3D
             Texture2D[] normals = new Texture2D[7];
 
             this.AddModel(Content, textures, "Solbourg_Sol", "Sol_1", shader, new Material(0.8f, 1f, 0f, 1), Matrix.CreateScale(0.03f), new Vector3(5f, -1, 5f), ModelType.ThreeDimensional);
-            this.AddModel(Content, textures, normals, "Solbourg_Maison", "Maison_1", shader, new Material(1f, 1f, 0f, 1f), Matrix.CreateScale(0.01f), new Vector3(0f, -1f, 10f), ModelType.ThreeDimensional);
+            this.AddModel(Content, textures, normals, "Solbourg_Maison", "Maison_1", shader, new Material(1f, 1f, 0f, 1f), Matrix.CreateScale(0.01f), new Vector3(3f, -1f, 8f), ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Fontaine", "Fontaine_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.0025f), new Vector3(9f, -1f, 10f), ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Muraille", "Muraille_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-10f, -1, -10f), ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Puits", "Puits_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(2f, -1, 5f), ModelType.ThreeDimensional);
@@ -47,7 +47,7 @@ namespace Test3D
             this.AddModel(Content, textures, "Solbourg_Palace", "Palace_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.0015f), new Vector3(0, -1, -10f), ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Commerce", "Commerce_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.005f), new Vector3(-6, -1, 8f), ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Restaurant", "Restaurant_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(-8, -1, 0), ModelType.ThreeDimensional);
-
+            this.AddModel(Content, textures, normals, "Solbourg_Chemin", "Chemin_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.01f), new Vector3(-9, -0.99f, 5.5f), ModelType.TwoDimensional);
 
             //ici, on importe le fichier de collision
             using (StreamReader stream = new StreamReader(Content.RootDirectory + @"\..\..\..\..\.." + "\\map\\Solbourg.txt"))
