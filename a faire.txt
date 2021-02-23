@@ -7,12 +7,12 @@ commerce OK
 restaurant OK
 chemin de terre (rousse et jaune) OK
 grand edifice avec balcon OK
+buisson taillés OK
 
-clotures
-dalles en pierre
-maisons collées
-autre maison deux etages
-buisson taillés 
-carrière de piere
-taverne
-pin parasol géant
+clotures : 3D
+dalles en pierre : 2D
+maisons collées : 3D
+autre maison deux etages : 3D
+carrière de piere : 3D
+taverne : 3D
+pin parasol géant : 2D

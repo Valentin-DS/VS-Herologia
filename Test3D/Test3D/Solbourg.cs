@@ -49,7 +49,7 @@ namespace Test3D
             this.AddModel(Content, textures, "Solbourg_Restaurant", "Restaurant_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(-8, -1, 0), ModelType.ThreeDimensional);
             this.AddModel(Content, textures, normals, "Solbourg_Chemin", "Chemin_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.01f), new Vector3(-9, -0.99f, 5.5f), ModelType.TwoDimensional);
             this.AddModel(Content, textures, "Solbourg_Manoir", "Manoir_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(-20, -1f, 5.5f), ModelType.ThreeDimensional);
-
+            this.AddModel(Content, textures, "Solbourg_Buisson_Taille", "Buisson taillé", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.003f), new Vector3(-5, -1f, 15f), ModelType.ThreeDimensional);
 
             //ici, on importe le fichier de collision
             using (StreamReader stream = new StreamReader(Content.RootDirectory + @"\..\..\..\..\.." + "\\map\\Solbourg.txt"))
