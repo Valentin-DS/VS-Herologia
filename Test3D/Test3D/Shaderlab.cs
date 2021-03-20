@@ -11,6 +11,7 @@ namespace Test3D
 {
     class Shaderlab : Level
     {
+        Effect shaderGlass;
         Light whiteLight;
         public Shaderlab(MainCharacter mc)
         {
@@ -27,11 +28,12 @@ namespace Test3D
         public override void Load(ContentManager Content, Effect shader)
         {
             whiteLight = new Light(new Vector3(0, 3, 5), new Vector4(1, 1, 1, 1), 1.0f, 15);
+            this.shaderGlass = Content.Load<Effect>("glass");
 
             Texture2D[] textures = new Texture2D[7];
             Texture2D[] normals = new Texture2D[7];
-            this.AddModel(Content, textures, "ShaderlabDefaultCube", "Cube", shader, new Material(), Matrix.CreateScale(0.01f), new Vector3(-5, 0, 0), ModelType.ThreeDimensional);
-            this.AddModel(Content, textures, "ShaderlabDefaultPlane", "Plane", shader, new Material(), Matrix.CreateScale(0.01f), new Vector3(5, 0, 0), ModelType.TwoDimensional);
+            this.AddModel(Content, textures, "ShaderlabDefaultCube", "Cube", shader, new Material(), Matrix.CreateScale(0.01f), new Vector3(-5, 0, 0), Vector3.Up, 0f, ModelType.ThreeDimensional);
+            this.AddModel(Content, textures, "ShaderlabDefaultPlane", "Plane", shader, new Material(), Matrix.CreateScale(0.01f), new Vector3(5, 0, 0), Vector3.Up, 0f, ModelType.TwoDimensional);
         }
 
         public override void Update(GameTime gt)
