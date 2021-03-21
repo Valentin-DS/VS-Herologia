@@ -40,20 +40,27 @@ namespace Test3D
             this.AddModel(Content, textures, "Solbourg_Fontaine", "Fontaine_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.0025f), new Vector3(9f, -1f, 10f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Muraille", "Muraille_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-10f, -1, -10f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Puits", "Puits_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(2f, -1, 5f), Vector3.Up, 0f, ModelType.ThreeDimensional);
-            this.AddModel(Content, textures, "Solbourg_Buisson", "Buisson_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(8f, -1, 2.05f), Vector3.Up, 0f, ModelType.TwoDimensional);
-            this.AddModel(textures, "Solbourg_Buisson", "Buisson_2", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(8f, -1, 5.05f), Vector3.Up, 0f, ModelType.TwoDimensional);
-            this.AddModel(textures, "Solbourg_Buisson", "Buisson_3", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(8f, -1, 4.05f), Vector3.Up, 0f, ModelType.TwoDimensional);
-            this.AddModel(textures, "Solbourg_Buisson", "Buisson_4", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(10f, -1, 7.05f), Vector3.Up, 0f, ModelType.TwoDimensional);
+            this.AddModel(Content, textures, "Solbourg_Buisson", "Buisson_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(11f, -1, 2.05f), Vector3.Up, 0f, ModelType.TwoDimensional);
+            this.AddModel(textures, "Solbourg_Buisson", "Buisson_2", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(12f, -1, 5.05f), Vector3.Up, 0f, ModelType.TwoDimensional);
+            this.AddModel(textures, "Solbourg_Buisson", "Buisson_3", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(12f, -1, 4.05f), Vector3.Up, 0f, ModelType.TwoDimensional);
+            this.AddModel(textures, "Solbourg_Buisson", "Buisson_4", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(14f, -1, 7.05f), Vector3.Up, 0f, ModelType.TwoDimensional);
             this.AddModel(Content, textures, "Solbourg_Palace", "Palace_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.0015f), new Vector3(0, -1, -10f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Commerce", "Commerce_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.005f), new Vector3(-6, -1, 8f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Restaurant", "Restaurant_1s", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(-8, -1, 0), Vector3.Up, 0f, ModelType.ThreeDimensional);
-            this.AddModel(Content, textures, normals, "Solbourg_Chemin", "Chemin_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.01f), new Vector3(-9, -0.99f, 5.5f), Vector3.Up, 0f, ModelType.TwoDimensional);
+            this.AddModel(Content, textures, normals, "Solbourg_Chemin", "Chemin_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.01f), new Vector3(-9, -0.99f, 5.75f), Vector3.Up, 0f, ModelType.TwoDimensional);
             this.AddModel(Content, textures, "Solbourg_Manoir", "Manoir_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(-20, -1f, 5.5f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Buisson_Taille", "Buisson taillé", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.003f), new Vector3(-5, -1f, 15f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Cloture", "Cloture_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.003f), new Vector3(-5.4f, -1f, 14f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(textures, "Solbourg_Cloture", "Cloture_2", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.003f), new Vector3(-5.4f, -1f, 18f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(textures, "Solbourg_Cloture", "Cloture_3", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.003f), new Vector3(-5.4f, -1f, 18.25f), Vector3.Up, 90f, ModelType.ThreeDimensional);
             this.AddModel(textures, "Solbourg_Cloture", "Cloture_4", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.003f), new Vector3(-1f, -1f, 13.85f), Vector3.Up, 270, ModelType.ThreeDimensional);
+            this.AddModel(Content, textures, "Solbourg_Dalle", "Dalles_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(-4.3f, -0.99f, 5.5f), Vector3.Up, 90, ModelType.ThreeDimensional);
+            this.AddModel(textures, "Solbourg_Dalle", "Dalles_2", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(7.4f, -0.99f, 0f), Vector3.Up, 90, ModelType.ThreeDimensional);
+            this.AddModel(textures, "Solbourg_Dalle", "Dalles_3", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(7.4f, -0.99f, 3f), Vector3.Up, 90, ModelType.ThreeDimensional);
+            this.AddModel(textures, "Solbourg_Dalle", "Dalles_4", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(5.4f, -0.99f, 3.25f), Vector3.Up, 0, ModelType.ThreeDimensional);
+            this.AddModel(textures, "Solbourg_Dalle", "Dalles_5", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(2.4f, -0.99f, 3.25f), Vector3.Up, 0, ModelType.ThreeDimensional);
+            this.AddModel(textures, "Solbourg_Dalle", "Dalles_5", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(-0.6f, -0.99f, 3.25f), Vector3.Up, 0, ModelType.ThreeDimensional);
+            this.AddModel(textures, "Solbourg_Dalle", "Dalles_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(-1.65f, -0.99f, 5.5f), Vector3.Up, 90, ModelType.ThreeDimensional);
 
 
             //ici, on importe le fichier de collision

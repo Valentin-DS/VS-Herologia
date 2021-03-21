@@ -8,9 +8,9 @@ restaurant OK
 chemin de terre (rousse et jaune) OK
 grand edifice avec balcon OK
 buisson taillés OK
+clotures OK
+dalles en pierre OK
 
-clotures : 3D
-dalles en pierre : 2D
 maisons collées : 3D
 autre maison deux etages : 3D
 taverne : 3D
