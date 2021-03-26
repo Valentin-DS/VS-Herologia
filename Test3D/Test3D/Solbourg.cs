@@ -61,6 +61,7 @@ namespace Test3D
             this.AddModel(textures, "Solbourg_Dalle", "Dalles_5", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(2.4f, -0.99f, 3.25f), Vector3.Up, 0, ModelType.ThreeDimensional);
             this.AddModel(textures, "Solbourg_Dalle", "Dalles_5", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(-0.6f, -0.99f, 3.25f), Vector3.Up, 0, ModelType.ThreeDimensional);
             this.AddModel(textures, "Solbourg_Dalle", "Dalles_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(-1.65f, -0.99f, 5.5f), Vector3.Up, 90, ModelType.ThreeDimensional);
+            this.AddModel(Content, textures, "Solbourg_Maison_2E", "Maison centre-ville 01", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(-5f, -0.99f, -7f), Vector3.Up, 0, ModelType.ThreeDimensional);
 
 
             //ici, on importe le fichier de collision
