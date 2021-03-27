@@ -11,7 +11,7 @@ buisson taillés OK
 clotures OK
 dalles en pierre OK
 taverne OK
-autre maison deux etages OK
+autre maison deux etages : 3D
 
 maisons collées : 3D
 pin parasol géant : 2D
