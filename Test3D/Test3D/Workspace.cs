@@ -51,6 +51,7 @@ namespace Test3D
             this.AddModel(textures, "grand_plane", "Sol 2", shader, new Material(), Matrix.CreateScale(0.01f), new Vector3(0f, -1.5f, 11f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Helicopter", "Hélicoptère 1", shader, new Material(), Matrix.CreateScale(0.01f), new Vector3(7f, -1f, 7f), Vector3.Up, 0f, ModelType.ThreeDimensional);
             this.AddModel(textures, "Helicopter", "Hélicoptère 2", shader, new Material(), Matrix.CreateScale(0.01f), new Vector3(3f, -1f, 7f), Vector3.Up, 0f, ModelType.ThreeDimensional);
+            this.AddModel(Content, textures, "test_relief", "relief", shader, new Material(), Matrix.CreateScale(0.02f), new Vector3(10f, -1f, 0f), Vector3.Up, 0f, ModelType.ThreeDimensional);
 
             using (StreamReader stream = new StreamReader(Content.RootDirectory + @"\..\..\..\..\.." + "\\map\\grand_plane_collider.txt"))
             {
