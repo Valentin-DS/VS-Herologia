@@ -63,6 +63,10 @@ namespace Test3D
             this.AddModel(textures, "Solbourg_Dalle", "Dalles_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.002f), new Vector3(-1.65f, -0.99f, 5.5f), Vector3.Up, 90, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Maison_2E", "Maison centre-ville 01", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.006f), new Vector3(-5f, -0.99f, -7f), Vector3.Up, 0, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Pin_Parasol", "Pin parasol géant", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.02f), new Vector3(-9, -0.99f, -7f), Vector3.Up, 0, ModelType.TwoDimensional);
+            this.AddModel(Content, textures, "Solbourg_Mitoyennes", "Maisons mitoyennes", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-15, -0.99f, -7f), Vector3.Up, 0, ModelType.ThreeDimensional);
+            this.AddModel(Content, textures, "Solbourg_Taverne", "Taverne", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-25, -0.99f, -7f), Vector3.Up, 0, ModelType.ThreeDimensional);
+            this.AddModel(Content, textures, normals, "Solbourg_Terrain", "Terrain", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.1f), new Vector3(-200, -1f, -5f), Vector3.Up, 0, ModelType.ThreeDimensional);
+
 
 
             //ici, on importe le fichier de collision
@@ -90,7 +94,7 @@ namespace Test3D
 
             //ici tu peux initialiser les lumières que tu veux ajouter, elles sont stockées dans la classe Light, ça simplifie la gestion des shaders
             Light.clear(); //supprime les lumières existantes et réinitialise les paramètres
-            Light.setAmbientIntensity(0.8f); //jour = 0.8f, nuit = 0.2f ou moins
+            Light.setAmbientIntensity(0.6f); //jour = 0.8f, nuit = 0.2f ou moins
             //Light redLight = new Light(new Vector3(7.2f, 1f, 7f), new Vector4(1, 0, 0, 1), 1, 4); //ajoute une lumière avec les paramètres de ton choix
         }
 

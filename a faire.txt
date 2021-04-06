@@ -12,6 +12,5 @@ clotures OK
 dalles en pierre OK
 taverne OK
 autre maison deux etages : 3D
-
-maisons collées : 3D
-pin parasol géant : 2D
+maisons collées : OK
+pin parasol géant : OK
