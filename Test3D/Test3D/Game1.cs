@@ -95,7 +95,7 @@ namespace Test3D
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             currentLevel.Draw(camera);
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(healthBar, new Rectangle(10, 10, 170, 40), Color.White);
             /*
             spriteBatch.DrawString(sf, (camera.getPosition().X - currentLevel.models2D[0].GetMatrix().Translation.X).ToString(), new Vector2(0, 0), Color.Red);

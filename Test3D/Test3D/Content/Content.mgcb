@@ -1292,3 +1292,15 @@
 /processorParam:TextureFormat=Compressed
 /build:Solbourg/Solbourg_Taverne.fbx
 
+#begin Solbourg/Herologia_Solbourg_Texture_Terrain_Test.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Solbourg/Herologia_Solbourg_Texture_Terrain_Test.png
+

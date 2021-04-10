@@ -65,7 +65,7 @@ namespace Test3D
             this.AddModel(Content, textures, "Solbourg_Pin_Parasol", "Pin parasol géant", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.02f), new Vector3(-9, -0.99f, -7f), Vector3.Up, 0, ModelType.TwoDimensional);
             this.AddModel(Content, textures, "Solbourg_Mitoyennes", "Maisons mitoyennes", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-15, -0.99f, -7f), Vector3.Up, 0, ModelType.ThreeDimensional);
             this.AddModel(Content, textures, "Solbourg_Taverne", "Taverne", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-25, -0.99f, -7f), Vector3.Up, 0, ModelType.ThreeDimensional);
-            this.AddModel(Content, textures, normals, "Solbourg_Terrain", "Terrain", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.1f), new Vector3(-200, -1f, -5f), Vector3.Up, 0, ModelType.ThreeDimensional);
+            this.AddModel(Content, textures, normals, "Solbourg_Terrain", "Terrain", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.1f), new Vector3(-150, -1.2f, -5f), Vector3.Up, 0, ModelType.ThreeDimensional);
 
 
 
