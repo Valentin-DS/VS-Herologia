@@ -18,19 +18,21 @@ namespace Test3D
             Droite = new List<Keys> {commands.Gauche, commands.Bas, commands.Haut}, 
             Haut = new List<Keys> {commands.Droite, commands.Bas, commands.Gauche}, 
             Bas = new List<Keys> {commands.Droite, commands.Gauche, commands.Haut}
-            };
+        };
 
         public static void Update(MainCharacter mc, Camera cam, Level level)
         {
             List<List<char>> collider = level.getCollider();
             Vector2 pos = mc.getPositionOnGrid();
-            if (ManageKeys.IsJustUp(Keys.Z) || ManageKeys.IsJustUp(Keys.S) || ManageKeys.IsJustUp(Keys.Q) || ManageKeys.IsJustUp(Keys.D))
+            if (ManageKeys.IsJustUp(commands.Haut) || ManageKeys.IsJustUp(commands.Bas) || ManageKeys.IsJustUp(commands.Gauche) || ManageKeys.IsJustUp(commands.Droite))
             {
                 mc.Pause();
             }
-            if (ManageKeys.IsPressed(Keys.Z) && ManageKeys.IsUp(Keys.S) && ManageKeys.IsUp(Keys.Q) && ManageKeys.IsUp(Keys.D))
+
+            //if (ManageKeys.checkPressedArr(commandes.Haut, notPressed.Haut)){}
+            if (ManageKeys.IsPressed(commands.Haut) && ManageKeys.IsUp(commands.Bas) && ManageKeys.IsUp(commands.Gauche) && ManageKeys.IsUp(commands.Droite))
             {
-                mc.InitializeMove(Keys.Z);
+                mc.InitializeMove(commands.Haut);
                 float speed = mc.getSpeed();
                 /*
                 if ("FE".Contains(collider[(int)(1 + mc.getPosition().Z - Zoffset - speed)][(int)(1 + mc.getPosition().X)])
@@ -39,12 +41,12 @@ namespace Test3D
                     || (mc.getPosition().X % 1 < 1 - Xoffset && mc.getPosition().X % 1 > Xoffset)))
                 {
                 */
-                    mc.Move(Keys.Z, speed);
+                    mc.Move(commands.Haut, speed);
                     cam.Translate(0, 0, -speed);
                 /*
                     if (collider[(int)(1 + mc.getPosition().Z)][(int)(1 + mc.getPosition().X)] == 'E')
                     {
-                        mc.Climb(Keys.Z, speed);
+                        mc.Climb(commands.Haut, speed);
                         cam.Translate(0, speed / 2f, 0);
                     }
                 }
@@ -54,11 +56,10 @@ namespace Test3D
                 }
                 */
             }
-            // else if (ManageKeys.checkPressedArr(new List<Keys> {Keys.S}, new List<Keys> { Keys.Z, Keys.Q, Keys.D}))
-            // else if (ManageKeys.checkPressedArr(new List<Keys> {commandes.Bas}, notPressed.Bas))
-            else if (ManageKeys.IsPressed(Keys.S) && ManageKeys.IsUp(Keys.Z) && ManageKeys.IsUp(Keys.Q) && ManageKeys.IsUp(Keys.D))
+            //else if (ManageKeys.checkPressedArr(commandes.Bas, notPressed.Bas)){}
+            else if (ManageKeys.IsPressed(commands.Bas) && ManageKeys.IsUp(commands.Haut) && ManageKeys.IsUp(commands.Gauche) && ManageKeys.IsUp(commands.Droite))
             {
-                mc.InitializeMove(Keys.S);
+                mc.InitializeMove(commands.Bas);
                 float speed = mc.getSpeed();
                 /*
                 if ("FE".Contains(collider[(int)(1 + mc.getPosition().Z + Zoffset + speed)][(int)(1 + mc.getPosition().X)])
@@ -66,12 +67,12 @@ namespace Test3D
                     || (mc.getPosition().X % 1 <= Xoffset && "FE".Contains(collider[(int)(1 + mc.getPosition().Z + Zoffset + speed)][(int)(1 + mc.getPosition().X - Xoffset)]))
                     || (mc.getPosition().X % 1 < 1 - Xoffset && mc.getPosition().X % 1 > Xoffset)))
                 {*/
-                    mc.Move(Keys.S, speed);
+                    mc.Move(commands.Bas, speed);
                     cam.Translate(0, 0, +speed);
                 /*
                     if (collider[(int)(1 + mc.getPosition().Z - speed)][(int)(1 + mc.getPosition().X)] == 'E')
                     {
-                        mc.Climb(Keys.S, speed);
+                        mc.Climb(commands.Bas, speed);
                         cam.Translate(0, -speed / 2f, 0);
                     }
                 }
@@ -81,9 +82,10 @@ namespace Test3D
                 }
                 */
             }
-            else if (ManageKeys.IsPressed(Keys.Q) && ManageKeys.IsUp(Keys.S) && ManageKeys.IsUp(Keys.Z) && ManageKeys.IsUp(Keys.D))
+            //else if (ManageKeys.checkPressedArr(commandes.Gauche, notPressed.Gauche)){}
+            else if (ManageKeys.IsPressed(commands.Gauche) && ManageKeys.IsUp(commands.Bas) && ManageKeys.IsUp(commands.Haut) && ManageKeys.IsUp(commands.Droite))
             {
-                mc.InitializeMove(Keys.Q);
+                mc.InitializeMove(commands.Gauche);
                 float speed = mc.getSpeed();
                 /*if ("FE".Contains(collider[(int)(1 + mc.getPosition().Z)][(int)(1 + mc.getPosition().X - Xoffset - speed)])
                     && ((mc.getPosition().Z % 1 >= 1 - Zoffset && "FE".Contains(collider[(int)(1 + mc.getPosition().Z + Zoffset)][(int)(1 + mc.getPosition().X - Xoffset - speed)]))
@@ -91,7 +93,7 @@ namespace Test3D
                     || (mc.getPosition().Z % 1 < 1 - Zoffset && mc.getPosition().Z % 1 > Zoffset)))
                 {
                 */
-                    mc.Move(Keys.Q, speed);
+                    mc.Move(commands.Gauche, speed);
                     cam.Translate(-speed, 0, 0);
                 /*}
                 else
@@ -100,9 +102,10 @@ namespace Test3D
                 }
                 */
             }
-            else if (ManageKeys.IsPressed(Keys.D) && ManageKeys.IsUp(Keys.S) && ManageKeys.IsUp(Keys.Q) && ManageKeys.IsUp(Keys.Z))
+            //else if (ManageKeys.checkPressedArr(commandes.Droite, notPressed.Droite)){}
+            else if (ManageKeys.IsPressed(commands.Droite) && ManageKeys.IsUp(commands.Bas) && ManageKeys.IsUp(commands.Gauche) && ManageKeys.IsUp(commands.Haut))
             {
-                mc.InitializeMove(Keys.D);
+                mc.InitializeMove(commands.Droite);
                 float speed = mc.getSpeed();
                 /*
                 if ("FE".Contains(collider[(int)(1 + mc.getPosition().Z)][(int)(1 + mc.getPosition().X + Xoffset + speed)])
@@ -111,7 +114,7 @@ namespace Test3D
                     || (mc.getPosition().Z % 1 < 1 - Zoffset && mc.getPosition().Z % 1 > Zoffset)))
                 {
                 */
-                    mc.Move(Keys.D, speed);
+                    mc.Move(commands.Droite, speed);
                     cam.Translate(speed, 0, 0);
                 /*
                 }
