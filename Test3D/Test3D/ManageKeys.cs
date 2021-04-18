@@ -44,7 +44,7 @@ namespace Test3D
         * et si les clés devant être relaché le sont bien.
         * On utilise Deux liste de key, la premiere pour les clés qui doivent être pressées <paramref name="keysPressed"/>,
         * la seconde pour celle devant être relachées <paramref name="keysNotPressed"/></summary>
-        * <param name="keysPressed">Une liste de touches du clavier devant être pressé</param>
+        * <param name="keysPressed">Une liste de touches du clavier devant être pressées</param>
         * <param name="keysNotPressed">Une liste de touches du clavier ne devant pas être pressé</param>
         * <return> bool</return>
         */
@@ -54,7 +54,7 @@ namespace Test3D
             // check si les keys qui doivent être pressed le sont bien, sinon on return false
             foreach(Key key in keysPressed){
                 arePressed = IsPressed(key);
-                if (arePressed == false){
+                if (!arePressed){
                     return arePressed;
                 }
             }
@@ -64,7 +64,34 @@ namespace Test3D
             // si les keys qui ne doivent pas être pressed sont pressed, on return false
             foreach(Key key in keysNotPressed){
                 areNotPressed = IsUp(key);
-                if (areNotPressed == false){
+                if (!areNotPressed){
+                    return areNotPressed;
+                }
+            }
+            return true;
+        }
+
+        /**
+        * <summary>Permet de savoir si la clés devant être pressées l'est bien, 
+        * et si les clés devant être relaché le sont bien.
+        * On utilise 1 key et 1 liste de key, la key est celle devant être pressé <paramref name="keyPressed"/>,
+        * la liste dekey correspond au keys devant être relachées <paramref name="keysNotPressed"/></summary>
+        * <param name="keyPressed">Une touche du clavier devant être pressé</param>
+        * <param name="keysNotPressed">Une liste de touches du clavier ne devant pas être pressé</param>
+        * <return> bool</return>
+        */
+        public static bool checkPressed(Keys keyPressed, List<Keys> keysNotPressed)
+        {
+            bool arePressed = IsPressed(key);
+            if (!arePressed){
+                return arePressed;
+            }
+
+            bool areNotPressed = true;
+            // si les keys qui ne doivent pas être pressed sont pressed, on return false
+            foreach(Key key in keysNotPressed){
+                areNotPressed = IsUp(key);
+                if (!areNotPressed){
                     return areNotPressed;
                 }
             }

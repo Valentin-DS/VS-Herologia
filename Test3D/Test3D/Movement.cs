@@ -12,6 +12,13 @@ namespace Test3D
     {
         public static float Xoffset = 0.2f;
         public static float Zoffset = 0.2f;
+        public static enum commands : Keys { Gauche = Keys.Q, Droite = Keys.D, Haut = Keys.Z, Bas = Keys.S};
+        public static enum notPressed { 
+            Gauche = new List<Keys> {commands.Droite, commands.Bas, commands.Haut}, 
+            Droite = new List<Keys> {commands.Gauche, commands.Bas, commands.Haut}, 
+            Haut = new List<Keys> {commands.Droite, commands.Bas, commands.Gauche}, 
+            Bas = new List<Keys> {commands.Droite, commands.Gauche, commands.Haut}
+            };
 
         public static void Update(MainCharacter mc, Camera cam, Level level)
         {
@@ -48,6 +55,7 @@ namespace Test3D
                 */
             }
             // else if (ManageKeys.checkPressedArr(new List<Keys> {Keys.S}, new List<Keys> { Keys.Z, Keys.Q, Keys.D}))
+            // else if (ManageKeys.checkPressedArr(new List<Keys> {commandes.Bas}, notPressed.Bas))
             else if (ManageKeys.IsPressed(Keys.S) && ManageKeys.IsUp(Keys.Z) && ManageKeys.IsUp(Keys.Q) && ManageKeys.IsUp(Keys.D))
             {
                 mc.InitializeMove(Keys.S);
