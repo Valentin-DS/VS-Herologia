@@ -47,6 +47,7 @@ namespace Test3D
                 }
                 */
             }
+            // else if (ManageKeys.checkPressedArr(new List<Keys> {Keys.S}, new List<Keys> { Keys.Z, Keys.Q, Keys.D}))
             else if (ManageKeys.IsPressed(Keys.S) && ManageKeys.IsUp(Keys.Z) && ManageKeys.IsUp(Keys.Q) && ManageKeys.IsUp(Keys.D))
             {
                 mc.InitializeMove(Keys.S);
