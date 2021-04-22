@@ -1211,18 +1211,6 @@
 /processorParam:TextureFormat=Compressed
 /build:workspace/test_relief.fbx
 
-#begin Solbourg/Herologia_Solbourg_NormalMap_Sol_Painted.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Solbourg/Herologia_Solbourg_NormalMap_Sol_Painted.png
-
 #begin Solbourg/Herologia_Solbourg_Texture_Sol_Painted.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1241,7 +1229,7 @@
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=True
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True

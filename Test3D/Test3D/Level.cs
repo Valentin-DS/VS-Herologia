@@ -19,6 +19,7 @@ namespace Test3D
         protected List<Character> characters;
         protected List<List<Char>> collider;
         protected string depository;
+        protected List<Face> terrainFaces;
         private IEnumerable<GraphicModel> filteredModels2D;
 
         public List<List<Char>> getCollider()
@@ -73,7 +74,7 @@ namespace Test3D
             return newModel;
         }
 
-        protected void AddModel(ContentManager content, Texture2D[] textures, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType)
+        protected void AddModel(ContentManager content, Texture2D[] textures, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType, bool isTerrain)
         {
             textures = new Texture2D[7];
             Model model = LoadModel(content, depository + importName, shader, out textures);
@@ -85,6 +86,10 @@ namespace Test3D
             else
             {
                 this.models2D.Add(graphicModel);
+            }
+
+            if (isTerrain)
+            {
             }
         }
 
@@ -110,12 +115,12 @@ namespace Test3D
             }
         }
 
-        protected void AddModel(ContentManager content, Texture2D[] textures, Texture2D[] normalMaps, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType)
+        protected void AddModel(ContentManager content, Texture2D[] textures, Texture2D[] normalMaps, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType, bool isTerrain)
         {
             textures = new Texture2D[7];
             normalMaps = new Texture2D[7];
             Model model = LoadModel(content, depository + importName, shader, out textures, out normalMaps);
-            GraphicModel graphicModel = new GraphicModel(depository + importName, instanceName, textures, normalMaps, material, model, scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateFromAxisAngle(rotationAxis, angle)* Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up));
+            GraphicModel graphicModel = new GraphicModel(depository + importName, instanceName, textures, normalMaps, material, model, scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateFromAxisAngle(rotationAxis, angle) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up));
             if (modelType.Equals(ModelType.ThreeDimensional))
             {
                 this.models3D.Add(graphicModel);
@@ -123,6 +128,10 @@ namespace Test3D
             else
             {
                 this.models2D.Add(graphicModel);
+            }
+
+            if (isTerrain)
+            {
             }
         }
 
