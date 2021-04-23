@@ -68,8 +68,6 @@ namespace Test3D
             //this.AddModel(Content, textures, "Solbourg_Taverne", "Taverne", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-25, -0.99f, -7f), Vector3.Up, 0, ModelType.ThreeDimensional, false);
             this.AddModel(Content, textures, "Solbourg_Terrain", "Terrain", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.1f), new Vector3(-0.25f, -1.2f, -0.25f), Vector3.Up, 0, ModelType.ThreeDimensional, true);
 
-
-
             //ici, on importe le fichier de collision
             using (StreamReader stream = new StreamReader(Content.RootDirectory + @"\..\..\..\..\.." + "\\map\\Solbourg.txt"))
             {
