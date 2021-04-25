@@ -88,7 +88,7 @@ namespace Test3D
         public void Draw(Camera camera)
         {
             Light.UpdateArrays();
-            
+
             Matrix[] modelTransforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(modelTransforms);
             int i = 0;
@@ -143,9 +143,9 @@ namespace Test3D
 
                     currentEffect.Parameters["xLightNumber"].SetValue(Light.getLightNumber());
 
-                    i++;                   
+                    i++;
                 }
-                
+
                 mesh.Draw();
             }
         }

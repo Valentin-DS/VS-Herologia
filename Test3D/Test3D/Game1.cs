@@ -8,7 +8,7 @@ namespace Test3D
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        GraphicsDevice device;
+        public static GraphicsDevice device;
 
         public Camera camera;
         Effect shader;
@@ -42,7 +42,7 @@ namespace Test3D
 
             Window.Title = "Herologia - Vertical Slice";
 
-            camera = new Camera(new Vector3(0.5f,3f,8f), new Vector3(0.5f, -0.5f, 0.5f), graphics);
+            camera = new Camera(new Vector3(0.5f,3f,58f), new Vector3(0.5f, -0.5f, 0.5f), graphics);
 
             base.Initialize();
         }
@@ -57,7 +57,7 @@ namespace Test3D
 
             sf = Content.Load<SpriteFont>("File");
 
-            mc = new MainCharacter(Content.Load<Model>("pleine"), Content.Load<Texture2D>("spritesheet_00"), Matrix.CreateScale(0.005f) * Matrix.CreateRotationX((float)Math.PI/2f) * Matrix.CreateWorld(new Vector3(0.5f, -0.5f, 0.5f), Vector3.Forward, Vector3.Up), new Vector2(1, 1), shader);
+            mc = new MainCharacter(Content.Load<Model>("pleine"), Content.Load<Texture2D>("spritesheet_00"), Matrix.CreateScale(0.005f) * Matrix.CreateRotationX((float)Math.PI/2f) * Matrix.CreateWorld(new Vector3(0.5f, -0.5f, 50.5f), Vector3.Forward, Vector3.Up), new Vector2(1, 51), shader);
             healthBar = Content.Load<Texture2D>("StatsBar");
 
             //Light red = new Light(new Vector3(5,3,5), new Vector4(1,0,0,1), 1, 8);
@@ -97,12 +97,7 @@ namespace Test3D
             currentLevel.Draw(camera);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(healthBar, new Rectangle(10, 10, 170, 40), Color.White);
-            /*
-            spriteBatch.DrawString(sf, (camera.getPosition().X - currentLevel.models2D[0].GetMatrix().Translation.X).ToString(), new Vector2(0, 0), Color.Red);
-            spriteBatch.DrawString(sf, (camera.getPosition().Y - currentLevel.models2D[0].GetMatrix().Translation.Y).ToString(), new Vector2(0, 15), Color.Red);
-            spriteBatch.DrawString(sf, (camera.getPosition().Z - currentLevel.models2D[0].GetMatrix().Translation.Z).ToString(), new Vector2(0, 30), Color.Red);
-            spriteBatch.DrawString(sf, camera.getProjection().ToString(), new Vector2(0, 45), Color.Red);
-            */
+            spriteBatch.DrawString(sf, mc.getPositionOnGrid().ToString() + " || " + mc.getPosition().ToString(), new Vector2(0, 0), Color.Red);
             spriteBatch.End();
             base.Draw(gameTime);
         }
