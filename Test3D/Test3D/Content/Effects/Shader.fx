@@ -49,8 +49,8 @@ Texture xNormalMap;
 
 float4x4 xLightsWorldViewProjection;
 
-sampler TextureSampler = sampler_state { texture = <xTexture>; magfilter = LINEAR; minfilter = LINEAR; mipfilter = LINEAR; AddressU = WRAP; AddressV = WRAP; };
-sampler NormalSampler = sampler_state { texture = <xNormalMap>; magfilter = LINEAR; minfilter = LINEAR;  mipfilter = LINEAR; AddressU = WRAP; AddressV = WRAP; };
+sampler TextureSampler = sampler_state { texture = <xTexture>; magfilter = POINT; minfilter = POINT; mipfilter = POINT; AddressU = WRAP; AddressV = WRAP; };
+sampler NormalSampler = sampler_state { texture = <xNormalMap>; magfilter = POINT; minfilter = POINT;  mipfilter = POINT; AddressU = WRAP; AddressV = WRAP; };
 
 
 VertexShaderOutput SimplestVertexShader(VertexShaderInput input)

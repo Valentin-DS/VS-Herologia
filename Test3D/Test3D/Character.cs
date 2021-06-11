@@ -25,6 +25,12 @@ namespace Test3D
             return positionOnGrid;
         }
 
+        public void setPosition(Vector3 position, Camera camera)
+        {
+            this.position.Translation = position;
+            camera.setPosition(new Vector3(position.X, position.Y + 3.5f, position.Z + 7.5f));
+        }
+
         public virtual void Update(GameTime gt)
         {
         }

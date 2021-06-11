@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Test3D.Constants;
 
 namespace Test3D
 {
@@ -22,6 +23,7 @@ namespace Test3D
         protected Model model;
         protected Matrix mMatrix;
         protected Material material;
+        protected ShaderName sn;
 
         public Matrix GetMatrix()
         {
@@ -43,7 +45,7 @@ namespace Test3D
             return this.model;
         }
 
-        public GraphicModel(string importName, string instanceName, Texture2D[] textures, Material material, Model model, Matrix mMatrix)
+        public GraphicModel(string importName, string instanceName, Texture2D[] textures, Material material, Model model, Matrix mMatrix, ShaderName sn)
         {
             this.textures = textures;
             this.material = material;
@@ -51,11 +53,12 @@ namespace Test3D
             this.mMatrix = mMatrix;
             this.importName = importName;
             this.instanceName = instanceName;
+            this.sn = sn;
             defaultTexture = true;
             normalMapped = false;
         }
 
-        public GraphicModel(string importName, string instanceName, Texture2D[] textures, Texture2D[] normalMaps, Material material, Model model, Matrix mMatrix)
+        public GraphicModel(string importName, string instanceName, Texture2D[] textures, Texture2D[] normalMaps, Material material, Model model, Matrix mMatrix, ShaderName sn)
         {
             this.textures = textures;
             this.normalMaps = normalMaps;
@@ -64,11 +67,12 @@ namespace Test3D
             this.mMatrix = mMatrix;
             this.importName = importName;
             this.instanceName = instanceName;
+            this.sn = sn;
             defaultTexture = true;
             normalMapped = true;
         }
 
-        public GraphicModel(string importName, string instanceName, Texture2D texture, Material material, Model model, Matrix mMatrix)
+        public GraphicModel(string importName, string instanceName, Texture2D texture, Material material, Model model, Matrix mMatrix, ShaderName sn)
         {
             this.importName = importName;
             this.instanceName = instanceName;
@@ -76,6 +80,7 @@ namespace Test3D
             this.material = material;
             this.model = model;
             this.mMatrix = mMatrix;
+            this.sn = sn;
             defaultTexture = false;
         }
 
@@ -91,6 +96,20 @@ namespace Test3D
 
             Matrix[] modelTransforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(modelTransforms);
+
+            switch(sn)
+            {
+                case ShaderName.Default:
+                    this.SetDefaultShaderParams(modelTransforms, camera);
+                    break;
+                case ShaderName.Glass:
+                    this.SetGlassShaderParams(modelTransforms, camera);
+                    break;
+            }
+        }
+
+        private void SetDefaultShaderParams(Matrix[] modelTransforms, Camera camera)
+        {
             int i = 0;
             foreach (ModelMesh mesh in model.Meshes)
             {
@@ -144,6 +163,24 @@ namespace Test3D
                     currentEffect.Parameters["xLightNumber"].SetValue(Light.getLightNumber());
 
                     i++;
+                }
+
+                mesh.Draw();
+            }
+        }
+
+        private void SetGlassShaderParams(Matrix[] modelTransforms, Camera camera)
+        {
+            foreach (ModelMesh mesh in model.Meshes)
+            {
+                foreach (Effect currentEffect in mesh.Effects)
+                {
+                    Matrix worldMatrix = modelTransforms[mesh.ParentBone.Index] * mMatrix;
+                    currentEffect.Parameters["xWorldViewProjection"].SetValue(worldMatrix * camera.getView() * camera.getProjection());
+                    currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
+                    currentEffect.Parameters["xWorldInverseTranspose"].SetValue(Matrix.Transpose(Matrix.Invert(mesh.ParentBone.Transform * mMatrix)));
+                    currentEffect.Parameters["xView"].SetValue(camera.getPosition());
+                    currentEffect.CurrentTechnique = currentEffect.Techniques["SpriteDrawing"];
                 }
 
                 mesh.Draw();

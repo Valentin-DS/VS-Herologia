@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Test3D.Constants;
 
 namespace Test3D
 {
@@ -17,10 +19,19 @@ namespace Test3D
         {
             this.models3D = new List<GraphicModel>();
             this.models2D = new List<GraphicModel>();
-            this.terrainFaces = new List<Face>();
             this.characters = new List<Character>()
             {
                 mc
+            };
+
+            this.stairs = new List<Stairs>()
+            {
+                { new Stairs(new Vector3(13, -1.2f, 55.1f), new Vector3(3,5,3.5f), ElevatingDirection.Vertical, 30f) },
+                { new Stairs(new Vector3(8.9f, 1.3f, 42.1f), new Vector3(5f,5,3), ElevatingDirection.Horizontal, 24f, HorizontalElevationConfig.RightInclination) },
+                { new Stairs(new Vector3(61f, 3.9f, 36.5f), new Vector3(3,5,4.5f), ElevatingDirection.Vertical, 24f) },
+                { new Stairs(new Vector3(6f, 6.3f, 22f), new Vector3(3,5,4.75f), ElevatingDirection.Vertical, 24f) },
+                { new Stairs(new Vector3(54.5f, 8.8f, 13f), new Vector3(5f,5,3), ElevatingDirection.Horizontal, 22f, HorizontalElevationConfig.LeftInclination) },
+                { new Stairs(new Vector3(33f, 10f, 10.75f), new Vector3(5,5.5f,5f), ElevatingDirection.Vertical, 24f) }
             };
 
             collider = new List<List<char>>();
@@ -28,14 +39,14 @@ namespace Test3D
         }
 
         override
-        public void Load(ContentManager Content, Effect shader)
+        public void Load(ContentManager Content, List<Effect> shaders)
         {
             //On ajoute le model avec la méthode DrawModel
             //on scale toujours par 1/100 les objets, la méthode d'importation fait par defaut un zoom de 100.
             //Create world est composé de trois Vector3, dont le premier est la position de l'origine blender du model sur notre grille
             Texture2D[] textures = new Texture2D[7];
             Texture2D[] normals = new Texture2D[7];
-            
+
             //this.AddModel(Content, textures, "Solbourg_Sol", "Sol_1", shader, new Material(0.8f, 1f, 0f, 1), Matrix.CreateScale(0.03f), new Vector3(5f, -1, 5f), Vector3.Up, 0f, ModelType.ThreeDimensional, false);
             //this.AddModel(Content, textures, normals, "Solbourg_Maison", "Maison_1", shader, new Material(1f, 1f, 0f, 1f), Matrix.CreateScale(0.01f), new Vector3(3f, -1f, 8f), Vector3.Up, 0f, ModelType.ThreeDimensional, false);
             //this.AddModel(Content, textures, "Solbourg_Fontaine", "Fontaine_1", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.0025f), new Vector3(9f, -1f, 10f), Vector3.Up, 0f, ModelType.ThreeDimensional, false);
@@ -66,7 +77,9 @@ namespace Test3D
             //this.AddModel(Content, textures, "Solbourg_Pin_Parasol", "Pin parasol géant", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.02f), new Vector3(-9, -0.99f, -7f), Vector3.Up, 0, ModelType.TwoDimensional, false);
             //this.AddModel(Content, textures, "Solbourg_Mitoyennes", "Maisons mitoyennes", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-15, -0.99f, -7f), Vector3.Up, 0, ModelType.ThreeDimensional, false);
             //this.AddModel(Content, textures, "Solbourg_Taverne", "Taverne", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.004f), new Vector3(-25, -0.99f, -7f), Vector3.Up, 0, ModelType.ThreeDimensional, false);
-            this.AddModel(Content, textures, "Solbourg_Terrain", "Terrain", shader, new Material(1, 1, 0, 1), Matrix.CreateScale(0.1f), new Vector3(-0.25f, -1.2f, -0.25f), Vector3.Up, 0, ModelType.ThreeDimensional, true);
+            this.AddModel(Content, textures, "Solbourg_Terrain", "Terrain", shaders[0], new Material(1, 1, 0, 1), Matrix.CreateScale(0.1f), new Vector3(-0.25f, -1.2f, -0.25f), Vector3.Up, 0, ModelType.ThreeDimensional, ShaderName.Default);
+            this.AddModel(Content, textures, "Solbourg_Cloture", "Test", shaders[0], new Material(1, 1, 0, 1), Matrix.CreateScale(0.001f), new Vector3(33f, 12f, 16f), Vector3.Up, 0, ModelType.ThreeDimensional, ShaderName.Default);
+
 
             //ici, on importe le fichier de collision
             using (StreamReader stream = new StreamReader(Content.RootDirectory + @"\..\..\..\..\.." + "\\map\\Solbourg.txt"))

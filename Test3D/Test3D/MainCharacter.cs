@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Test3D.Constants;
 
 namespace Test3D
 {
@@ -35,7 +36,7 @@ namespace Test3D
             line = 2;
             column = 0;
             timer = 0;
-            this.model = new GraphicModel("Lissandra", "Lissandra", texture, new Material(), model, position);
+            this.model = new GraphicModel("Lissandra", "Lissandra", texture, new Material(), model, position, ShaderName.Default);
             currentMovementMode = movementMode.STAND;
         }
 
@@ -205,16 +206,52 @@ namespace Test3D
                 }
             }
         }
-        public void Climb(Keys k, float speed)
+        public void Climb(Keys k, ElevatingDirection direction, float angle, HorizontalElevationConfig hConfig = HorizontalElevationConfig.None)
         {
-            if (k == Keys.Z)
+            if (direction.Equals(ElevatingDirection.Vertical))
             {
-                position *= Matrix.CreateTranslation(0, speed/2f, 0);
+                switch (k)
+                {
+                    case Keys.Z:
+                        position *= Matrix.CreateTranslation(0, this.getSpeed() * (angle / 45), 0);
+                        break;
+                    case Keys.S:
+                        position *= Matrix.CreateTranslation(0, this.getSpeed() * (-angle / 45), 0);
+                        break;
+                }
             }
-            else if (k == Keys.S)
+            else if (direction.Equals(ElevatingDirection.Horizontal))
             {
-                position *= Matrix.CreateTranslation(0, -speed/2f, 0);
+                switch (hConfig)
+                {
+                    case HorizontalElevationConfig.LeftInclination:
+                        if (k.Equals(Keys.Q))
+                        {
+                            position *= Matrix.CreateTranslation(0, this.getSpeed() * (angle / 45), 0);
+                        }
+                        else if (k.Equals(Keys.D))
+                        {
+                            position *= Matrix.CreateTranslation(0, this.getSpeed() * (-angle / 45), 0);
+                        }
+                        break;
+                    case HorizontalElevationConfig.RightInclination:
+                        if (k.Equals(Keys.Q))
+                        {
+                            position *= Matrix.CreateTranslation(0, this.getSpeed() * (-angle / 45), 0);
+                        }
+                        else if (k.Equals(Keys.D))
+                        {
+                            position *= Matrix.CreateTranslation(0, this.getSpeed() * (angle / 45), 0);
+                        }
+                        break;
+                }
             }
+            // position *= Matrix.CreateTranslation(0, this.getSpeed() * angleCoefficient, 0);
+        }
+
+        public void ForceAltitude(float altitude)
+        {
+            position *= Matrix.CreateTranslation(0, altitude, 0);
         }
 
         public void Pause()

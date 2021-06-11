@@ -49,6 +49,11 @@ namespace Test3D
             return viewVector;
         }
 
+        public void setPosition(Vector3 position)
+        {
+            this.position = position;
+        }
+
         public void Translate(float x, float y , float z)
         {
             position.X += x;
@@ -59,6 +64,7 @@ namespace Test3D
         public void Update(GameTime gt, Vector3 target)
         {
             this.target = target;
+            position.Y = target.Y + 3.5f;
             viewVector = Vector3.Transform(target - position, Matrix.CreateRotationY(0));
             viewVector.Normalize();
             view = Matrix.CreateLookAt(position, target, new Vector3(0f, 1f, 0f));

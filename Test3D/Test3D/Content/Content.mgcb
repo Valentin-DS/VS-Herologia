@@ -1211,18 +1211,6 @@
 /processorParam:TextureFormat=Compressed
 /build:workspace/test_relief.fbx
 
-#begin Solbourg/Herologia_Solbourg_Texture_Sol_Painted.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Solbourg/Herologia_Solbourg_Texture_Sol_Painted.png
-
 #begin Solbourg/Solbourg_Terrain.fbx
 /importer:FbxImporter
 /processor:ModelProcessor
@@ -1291,4 +1279,47 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Solbourg/Herologia_Solbourg_Texture_Terrain_Test.png
+
+#begin Effects/Glass.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/Glass.fx
+
+#begin Effects/Base.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/Base.fx
+
+#begin Solbourg/Herologia_Solbourg_Texture_Terrain.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Solbourg/Herologia_Solbourg_Texture_Terrain.png
+
+#begin Solbourg/Cube_Test.fbx
+/importer:FbxImporter
+/processor:ModelProcessor
+/processorParam:ColorKeyColor=0,0,0,0
+/processorParam:ColorKeyEnabled=True
+/processorParam:DefaultEffect=BasicEffect
+/processorParam:GenerateMipmaps=False
+/processorParam:GenerateTangentFrames=True
+/processorParam:PremultiplyTextureAlpha=True
+/processorParam:PremultiplyVertexColors=True
+/processorParam:ResizeTexturesToPowerOfTwo=False
+/processorParam:RotationX=0
+/processorParam:RotationY=0
+/processorParam:RotationZ=0
+/processorParam:Scale=1
+/processorParam:SwapWindingOrder=False
+/processorParam:TextureFormat=Compressed
+/build:Solbourg/Cube_Test.fbx
 

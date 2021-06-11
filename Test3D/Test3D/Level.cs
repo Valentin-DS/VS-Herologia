@@ -8,19 +8,21 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Test3D.Constants;
 
 namespace Test3D
 {
     public abstract class Level
     {
         public enum ModelType { TwoDimensional, ThreeDimensional }
-        protected List<GraphicModel> models3D;
+        public List<Stairs> stairs;
         public List<GraphicModel> models2D;
+        protected List<GraphicModel> models3D;
         protected List<Character> characters;
         protected List<List<Char>> collider;
         protected string depository;
-        protected List<Face> terrainFaces;
         private IEnumerable<GraphicModel> filteredModels2D;
+
 
         public List<List<Char>> getCollider()
         {
@@ -74,11 +76,11 @@ namespace Test3D
             return newModel;
         }
 
-        protected void AddModel(ContentManager content, Texture2D[] textures, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType, bool isTerrain)
+        protected void AddModel(ContentManager content, Texture2D[] textures, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType, ShaderName sn)
         {
             textures = new Texture2D[7];
             Model model = LoadModel(content, depository + importName, shader, out textures);
-            GraphicModel graphicModel = new GraphicModel(depository + importName, instanceName, textures, material, model, scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up));
+            GraphicModel graphicModel = new GraphicModel(depository + importName, instanceName, textures, material, model, scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up), sn);
             if (modelType.Equals(ModelType.ThreeDimensional))
             {
                 this.models3D.Add(graphicModel);
@@ -87,13 +89,9 @@ namespace Test3D
             {
                 this.models2D.Add(graphicModel);
             }
-
-            if (isTerrain)
-            {
-            }
         }
 
-        protected void AddModel(Texture2D[] textures, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType)
+        protected void AddModel(Texture2D[] textures, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType, ShaderName sn)
         {
             textures = new Texture2D[7];
             if (modelType.Equals(ModelType.ThreeDimensional))
@@ -103,24 +101,24 @@ namespace Test3D
                                                              textures,
                                                              material,
                                                              this.models3D.First(m => m.GetImportName().Equals(depository + importName)).GetModel(),
-                                                             scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up));
+                                                             scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up), sn);
                 this.models3D.Add(graphicModel);
             }
             else
             {
                 GraphicModel graphicModel = new GraphicModel(depository + importName, instanceName, textures, material,
                                                              this.models2D.First(m => m.GetImportName().Equals(depository + importName)).GetModel(),
-                                                             scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up));
+                                                             scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up), sn);
                 this.models2D.Add(graphicModel);
             }
         }
 
-        protected void AddModel(ContentManager content, Texture2D[] textures, Texture2D[] normalMaps, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType, bool isTerrain)
+        protected void AddModel(ContentManager content, Texture2D[] textures, Texture2D[] normalMaps, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType, ShaderName sn)
         {
             textures = new Texture2D[7];
             normalMaps = new Texture2D[7];
             Model model = LoadModel(content, depository + importName, shader, out textures, out normalMaps);
-            GraphicModel graphicModel = new GraphicModel(depository + importName, instanceName, textures, normalMaps, material, model, scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateFromAxisAngle(rotationAxis, angle) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up));
+            GraphicModel graphicModel = new GraphicModel(depository + importName, instanceName, textures, normalMaps, material, model, scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateFromAxisAngle(rotationAxis, angle) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up), sn);
             if (modelType.Equals(ModelType.ThreeDimensional))
             {
                 this.models3D.Add(graphicModel);
@@ -129,13 +127,9 @@ namespace Test3D
             {
                 this.models2D.Add(graphicModel);
             }
-
-            if (isTerrain)
-            {
-            }
         }
 
-        protected void AddModel(Texture2D[] textures, Texture2D[] normalMaps, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType)
+        protected void AddModel(Texture2D[] textures, Texture2D[] normalMaps, string importName, string instanceName, Effect shader, Material material, Matrix scale, Vector3 position, Vector3 rotationAxis, float angle, ModelType modelType, ShaderName sn)
         {
             textures = new Texture2D[7];
             normalMaps = new Texture2D[7];
@@ -143,19 +137,19 @@ namespace Test3D
             {
                 GraphicModel graphicModel = new GraphicModel(depository + importName, instanceName, textures, material,
                                                              this.models3D.First(m => m.GetImportName().Equals(depository + importName)).GetModel(),
-                                                             scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up));
+                                                             scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up), sn);
                 this.models3D.Add(graphicModel);
             }
             else
             {
                 GraphicModel graphicModel = new GraphicModel(depository + importName, instanceName, textures, material,
                                                              this.models2D.First(m => m.GetImportName().Equals(depository + importName)).GetModel(),
-                                                             scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up));
+                                                             scale * Matrix.CreateFromAxisAngle(rotationAxis, MathHelper.ToRadians(angle)) * Matrix.CreateWorld(position, Vector3.Forward, Vector3.Up), sn);
                 this.models2D.Add(graphicModel);
             }
         }
 
-        public abstract void Load(ContentManager Content, Effect shader);
+        public abstract void Load(ContentManager Content, List<Effect> shaders);
 
         public abstract void Update(GameTime gt);
 
