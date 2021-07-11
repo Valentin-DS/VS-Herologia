@@ -17,6 +17,7 @@ namespace Test3D
         private int column;
         private float timer;
         private enum movementMode { STAND, WALK, RUN, SWIM };
+        private enum MovementCol { BOTTOM=0, TOP=6, LEFT=12,  RIGHT=18 };
         private movementMode currentMovementMode;
 
         public MainCharacter(Model model, Texture2D texture, Matrix position, Vector2 positionOnGrid, Effect shader)
@@ -97,75 +98,48 @@ namespace Test3D
             model.Update(subTexture, position);
         }
 
+        public void setMoveModeShift()
+        {
+            if (ManageKeys.IsPressed(Keys.LeftShift))
+            {
+                currentMovementMode = movementMode.RUN;
+                line = 0;
+            }
+            else
+            {
+                currentMovementMode = movementMode.WALK;
+                line = 1;
+            }
+        }
+
+        public setColByMod(int col){
+            if (currentMovementMode == movementMode.STAND)
+            {
+                column = col;
+            }
+        }
+
         public void InitializeMove(Keys k)
         {
             if (k == Keys.Z)
             {
-                if (currentMovementMode == movementMode.STAND)
-                {
-                    column = 6;
-                }
-                if (ManageKeys.IsPressed(Keys.LeftShift))
-                {
-                    currentMovementMode = movementMode.RUN;
-                    line = 0;
-                }
-                else
-                {
-                    currentMovementMode = movementMode.WALK;
-                    line = 1;
-                }
+                setColByMod(MovementCol.TOP);
+                setMoveModeShift();
             }
             else if (k == Keys.S)
             {
-                if (currentMovementMode == movementMode.STAND)
-                {
-                    column = 0;
-                }
-                if (ManageKeys.IsPressed(Keys.LeftShift))
-                {
-                    currentMovementMode = movementMode.RUN;
-                    line = 0;
-                }
-                else
-                {
-                    currentMovementMode = movementMode.WALK;
-                    line = 1;
-                }
+                setColByMod(MovementCol.BOTTOM);
+                setMoveModeShift();
             }
             else if (k == Keys.Q)
             {
-                if (currentMovementMode == movementMode.STAND)
-                {
-                    column = 12;
-                }
-                if (ManageKeys.IsPressed(Keys.LeftShift))
-                {
-                    currentMovementMode = movementMode.RUN;
-                    line = 0;
-                }
-                else
-                {
-                    currentMovementMode = movementMode.WALK;
-                    line = 1;
-                }
+                setColByMod(MovementCol.LEFT);
+                setMoveModeShift();
             }
             else if (k == Keys.D)
             {
-                if (currentMovementMode == movementMode.STAND)
-                {
-                    column = 18;
-                }
-                if (ManageKeys.IsPressed(Keys.LeftShift))
-                {
-                    currentMovementMode = movementMode.RUN;
-                    line = 0;
-                }
-                else
-                {
-                    currentMovementMode = movementMode.WALK;
-                    line = 1;
-                }
+                setColByMod(MovementCol.RIGHT);
+                setMoveModeShift();
             }
         }
 
@@ -206,6 +180,43 @@ namespace Test3D
                 }
             }
         }
+
+        /**
+
+        param speeds = list de float strictement composé de 3 valeurs
+        */
+        public void Move2(List<Keys> k, List<float> speeds)
+        {
+            int xCoord = (int)position.Translation.X;
+            int zCoord = (int)position.Translation.Z;
+            position *= Matrix.CreateTranslation(speeds[0], speeds[1], speeds[2]);
+
+            if (k.Contains(Keys.Z) && k.Contains(Keys.D))
+            {
+                if (zCoord - (int)position.Translation.Z >= 1 && (int)position.Translation.X - xCoord >= 1)
+                {
+                    positionOnGrid.Y--;
+                    positionOnGrid.X++;
+                }
+            }
+            else if (k.Contains(Keys.S) && k.Contains(Keys.D))
+            {
+                if ((int)position.Translation.Z - zCoord >= 1 && (int)position.Translation.X - xCoord >= 1)
+                {
+                    positionOnGrid.Y++;
+                    positionOnGrid.X++;
+                }
+            }
+            else if (k.Contains(Keys.Z))
+            {
+                if (zCoord - (int)position.Translation.Z >= 1)
+                {
+                    positionOnGrid.Y--;
+                }
+            }
+        }
+
+
         public void Climb(Keys k, ElevatingDirection direction, float angle, HorizontalElevationConfig hConfig = HorizontalElevationConfig.None)
         {
             if (direction.Equals(ElevatingDirection.Vertical))
