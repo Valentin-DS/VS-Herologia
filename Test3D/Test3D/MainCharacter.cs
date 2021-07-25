@@ -17,7 +17,7 @@ namespace Test3D
         private int column;
         private float timer;
         private enum movementMode { STAND, WALK, RUN, SWIM };
-        private enum MovementCol { BOTTOM=0, TOP=6, LEFT=12,  RIGHT=18 };
+        private enum MovementCol: int { BOTTOM=0, TOP=6, LEFT=12,  RIGHT=18 };
         private movementMode currentMovementMode;
 
         public MainCharacter(Model model, Texture2D texture, Matrix position, Vector2 positionOnGrid, Effect shader)
@@ -112,7 +112,7 @@ namespace Test3D
             }
         }
 
-        public setColByMod(int col){
+        public void setColByMod(int col){
             if (currentMovementMode == movementMode.STAND)
             {
                 column = col;
@@ -123,22 +123,22 @@ namespace Test3D
         {
             if (k == Keys.Z)
             {
-                setColByMod(MovementCol.TOP);
+                setColByMod((int) MovementCol.TOP);
                 setMoveModeShift();
             }
             else if (k == Keys.S)
             {
-                setColByMod(MovementCol.BOTTOM);
+                setColByMod((int) MovementCol.BOTTOM);
                 setMoveModeShift();
             }
             else if (k == Keys.Q)
             {
-                setColByMod(MovementCol.LEFT);
+                setColByMod((int) MovementCol.LEFT);
                 setMoveModeShift();
             }
             else if (k == Keys.D)
             {
-                setColByMod(MovementCol.RIGHT);
+                setColByMod((int) MovementCol.RIGHT);
                 setMoveModeShift();
             }
         }

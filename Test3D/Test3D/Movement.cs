@@ -183,23 +183,28 @@ namespace Test3D
 
 
             //mc.setMoveModeShift();
-            if (listPressed.Count > 0)
+
+            int nbPressed = listPressed.Count;
+            if (nbPressed > 0)
             {
-                mc.InitializeMove(listPressed[0]);
+                
+                mc.InitializeMove(listPressed[nbPressed-1]);
 
                 float speed = (float) mc.getSpeed() / (listPressed.Count >=2 ? (float) Math.Sqrt(2) : 1);
+                if (testColider(listPressed[nbPressed - 1], collider, mc, speed))
+                {
+                    //float speed = (float)Math.Sqrt(mc.getSpeed());
+                    List<float> l = new List<float> { listPressed.Contains(Keys.Q) ? -speed : (listPressed.Contains(Keys.D) ? speed : 0), 0, listPressed.Contains(Keys.Z) ? -speed : (listPressed.Contains(Keys.S) ? speed : 0) };
+                    //endregion
 
-        
-                //float speed = (float)Math.Sqrt(mc.getSpeed());
-                List<float> l = new List<float> { listPressed.Contains(Keys.Q) ? -speed : (listPressed.Contains(Keys.D) ? speed : 0), 0, listPressed.Contains(Keys.Z) ? -speed : (listPressed.Contains(Keys.S) ? speed : 0) };
-                //endregion
+                    mc.Move2(listPressed, l);
+                    cam.Translate(l[0], l[1], l[2]);
 
-                mc.Move2(listPressed, l);
-                cam.Translate(l[0], l[1], l[2]);
-            
-                CheckAltitude(collider, mc, cam, speed);
-                foreach (var key in listPressed) {
-                    CheckClimbInputs(collider, cam, speed, key, mc);
+                    CheckAltitude(collider, mc, cam, speed);
+                    foreach (var key in listPressed)
+                    {
+                        CheckClimbInputs(collider, cam, speed, key, mc);
+                    }
                 }
             }
             else
@@ -207,29 +212,49 @@ namespace Test3D
                 mc.Pause();
             }
         }
-    }
-    public void test(){
-        //ZSQD
-        /*
-        if (AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z - Zoffset - speed)][(int)(1 + mc.getPosition().X)])
-            && ((mc.getPosition().X % 1 >= 1 - Xoffset && AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z - Zoffset - speed)][(int)(1 + mc.getPosition().X + Xoffset)]))
-            || (mc.getPosition().X % 1 <= Xoffset && AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z - Zoffset - speed)][(int)(1 + mc.getPosition().X - Xoffset)]))
-            || (mc.getPosition().X % 1 < 1 - Xoffset && mc.getPosition().X % 1 > Xoffset)))
-        if (AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z + Zoffset + speed)][(int)(1 + mc.getPosition().X)])
-            && ((mc.getPosition().X % 1 >= 1 - Xoffset && AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z + Zoffset + speed)][(int)(1 + mc.getPosition().X + Xoffset)]))
-            || (mc.getPosition().X % 1 <= Xoffset && AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z + Zoffset + speed)][(int)(1 + mc.getPosition().X - Xoffset)]))
-            || (mc.getPosition().X % 1 < 1 - Xoffset && mc.getPosition().X % 1 > Xoffset)))
-        if (AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z)][(int)(1 + mc.getPosition().X - Xoffset - speed)])
-            && ((mc.getPosition().Z % 1 >= 1 - Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z + Zoffset)][(int)(1 + mc.getPosition().X - Xoffset - speed)]))
-            || (mc.getPosition().Z % 1 <= Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z - Zoffset)][(int)(1 + mc.getPosition().X - Xoffset - speed)]))
-            || (mc.getPosition().Z % 1 < 1 - Zoffset && mc.getPosition().Z % 1 > Zoffset)))
-        if (AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z)][(int)(1 + mc.getPosition().X + Xoffset + speed)])
-            && ((mc.getPosition().Z % 1 >= 1 - Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z + Zoffset)][(int)(1 + mc.getPosition().X + Xoffset + speed)]))
-            || (mc.getPosition().Z % 1 <= Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z - Zoffset)][(int)(1 + mc.getPosition().X + Xoffset + speed)]))
-            || (mc.getPosition().Z % 1 <= Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(1 + mc.getPosition().Z - Zoffset)][(int)(1 + mc.getPosition().X + Xoffset + speed)]))
-            || (mc.getPosition().Z % 1 < 1 - Zoffset && mc.getPosition().Z % 1 > Zoffset)))
-        */
+    
+    public static bool testColider(Keys keyPressed, List<List<char>> collider, MainCharacter mc, float speed){
+            //ZSQD
+            float posZ = 1 + mc.getPosition().Z;
+            float posX = 1 + mc.getPosition().X;
+            float mcX1 = mc.getPosition().X % 1;
+            float mcZ1 = mc.getPosition().Z % 1;
 
+            if (keyPressed == Keys.Z)
+            {
+                float zSpeed = posZ - Zoffset - speed;
+                return AUTHORIZED_CHARS.Contains(collider[(int)(zSpeed)][(int)(posX)])
+            && ((mcX1 >= 1 - Xoffset && AUTHORIZED_CHARS.Contains(collider[(int)(zSpeed)][(int)(posX + Xoffset)]))
+            || (mcX1 <= Xoffset && AUTHORIZED_CHARS.Contains(collider[(int)(zSpeed)][(int)(posX - Xoffset)]))
+            || (mcX1 < 1 - Xoffset && mcX1 > Xoffset));
+            }
+            else if (keyPressed == Keys.S)
+            {
+                float sSpeed = posZ + Zoffset + speed;
+                return AUTHORIZED_CHARS.Contains(collider[(int)(sSpeed)][(int)(posX)])
+            && ((mcX1 >= 1 - Xoffset && AUTHORIZED_CHARS.Contains(collider[(int)(sSpeed)][(int)(posX + Xoffset)]))
+            || (mcX1 <= Xoffset && AUTHORIZED_CHARS.Contains(collider[(int)(sSpeed)][(int)(posX - Xoffset)]))
+            || (mcX1 < 1 - Xoffset && mcX1 > Xoffset));
+            }
+            else if (keyPressed == Keys.Q)
+            {
+                float gSpeed = posX - Xoffset - speed;
+                return AUTHORIZED_CHARS.Contains(collider[(int)(posZ)][(int)(gSpeed)])
+            && ((mcZ1 >= 1 - Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(posZ + Zoffset)][(int)(gSpeed)]))
+            || (mcZ1 <= Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(posZ - Zoffset)][(int)(gSpeed)]))
+            || (mcZ1 < 1 - Zoffset && mcZ1 > Zoffset));
+            }
+            else if (keyPressed == Keys.D)
+            {
+                float dSpeed = posX + Xoffset + speed;
+                return AUTHORIZED_CHARS.Contains(collider[(int)(posZ)][(int)(dSpeed)])
+            && ((mcZ1 >= 1 - Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(posZ + Zoffset)][(int)(dSpeed)]))
+            || (mcZ1 <= Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(posZ - Zoffset)][(int)(dSpeed)]))
+            || (mcZ1 <= Zoffset && AUTHORIZED_CHARS.Contains(collider[(int)(posZ - Zoffset)][(int)(dSpeed)]))
+            || (mcZ1 < 1 - Zoffset && mcZ1 > Zoffset));
+            }
+            return false;
+        
     }
 
         public static bool IsCurrentChar(char c, List<List<char>> collider, MainCharacter mc, float speed)

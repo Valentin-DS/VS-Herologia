@@ -89,7 +89,7 @@ namespace Test3D
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.Draw(healthBar, new Rectangle(10, 10, 170, 40), Color.White);
             spriteBatch.DrawString(sf, mc.getPositionOnGrid().ToString() + " || " + mc.getPosition().ToString(), new Vector2(0, 0), Color.Red);
-            spriteBatch.DrawString(sf, Movement.isSecondFloorReached.ToString(), new Vector2(0, 20), Color.Red);
+            //spriteBatch.DrawString(sf, Movement.isSecondFloorReached.ToString(), new Vector2(0, 20), Color.Red);
             spriteBatch.End();
             base.Draw(gameTime);
         }
