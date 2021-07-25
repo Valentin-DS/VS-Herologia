@@ -14,6 +14,7 @@ namespace Test3D
     {
         public static float Xoffset = 0.2f;
         public static float Zoffset = 0.2f;
+        public static List<Keys> listPressed = new List<Keys>();
 
         public static void UpdateOld(MainCharacter mc, Camera cam, Level level)
         {
@@ -116,22 +117,15 @@ namespace Test3D
         {
             List<List<char>> collider = level.getCollider();
             Vector2 pos = mc.getPositionOnGrid();
+            listPressed.Clear();
+
             if (ManageKeys.IsJustUp(Keys.Z) || ManageKeys.IsJustUp(Keys.S) || ManageKeys.IsJustUp(Keys.Q) || ManageKeys.IsJustUp(Keys.D))
             {
-                //mc.Pause();
+                mc.Pause();
             }
 
             //region pressed keys list
-            List<Keys> listPressed = new List<Keys>();
-            
-            if (ManageKeys.IsPressed(Keys.D) && ManageKeys.IsUp(Keys.Q) && (ManageKeys.IsUp(Keys.S) || ManageKeys.IsUp(Keys.Z)) && listPressed.Count < 2)
-            {
-                listPressed.Add(Keys.D);
-            }
-            else if (ManageKeys.IsPressed(Keys.Q) && (ManageKeys.IsUp(Keys.D)) && (ManageKeys.IsUp(Keys.S) || ManageKeys.IsUp(Keys.Z)) && listPressed.Count < 2)
-            {
-                listPressed.Add(Keys.Q);
-            }
+
             if (ManageKeys.IsPressed(Keys.Z) && !ManageKeys.IsJustUp(Keys.Z) && ManageKeys.IsUp(Keys.S) && (ManageKeys.IsUp(Keys.Q) || ManageKeys.IsUp(Keys.D)) && listPressed.Count < 2)
             {
                 listPressed.Add(Keys.Z);
@@ -140,47 +134,22 @@ namespace Test3D
             {
                 listPressed.Add(Keys.S);
             }
-            Console.WriteLine(listPressed);
-            /*
-            if (ManageKeys.IsPressed(Keys.D) && ManageKeys.IsPressed(Keys.Z) && ManageKeys.IsUp(Keys.S) && ManageKeys.IsUp(Keys.Q))
+            if (ManageKeys.IsPressed(Keys.D) && ManageKeys.IsUp(Keys.Q) && (ManageKeys.IsUp(Keys.S) || ManageKeys.IsUp(Keys.Z)) && listPressed.Count < 2)
             {
                 listPressed.Add(Keys.D);
-                listPressed.Add(Keys.Z);
+                if (ManageKeys.IsJustPressed(Keys.D))
+                {
+                    mc.Pause();
+                }
             }
-            else if (ManageKeys.IsPressed(Keys.D) && ManageKeys.IsPressed(Keys.S) && ManageKeys.IsUp(Keys.Z) && ManageKeys.IsUp(Keys.Q))
-            {
-                listPressed.Add(Keys.D);
-                listPressed.Add(Keys.S);
-            }
-            else if (ManageKeys.IsPressed(Keys.Q) && ManageKeys.IsPressed(Keys.Z) && ManageKeys.IsUp(Keys.S) && ManageKeys.IsUp(Keys.D))
+            else if (ManageKeys.IsPressed(Keys.Q) && (ManageKeys.IsUp(Keys.D)) && (ManageKeys.IsUp(Keys.S) || ManageKeys.IsUp(Keys.Z)) && listPressed.Count < 2)
             {
                 listPressed.Add(Keys.Q);
-                listPressed.Add(Keys.Z);
+                if (ManageKeys.IsJustPressed(Keys.Q))
+                {
+                    mc.Pause();
+                }
             }
-            else if (ManageKeys.IsPressed(Keys.Q) && ManageKeys.IsPressed(Keys.S) && ManageKeys.IsUp(Keys.Z) && ManageKeys.IsUp(Keys.D))
-            {
-                listPressed.Add(Keys.Q);
-                listPressed.Add(Keys.S);
-            }
-
-            else if (ManageKeys.IsPressed(Keys.D) && ManageKeys.IsUp(Keys.Z) && ManageKeys.IsUp(Keys.S) && ManageKeys.IsUp(Keys.Q))
-            {
-                listPressed.Add(Keys.D);
-            }
-            else if (ManageKeys.IsPressed(Keys.S) && ManageKeys.IsUp(Keys.D) && ManageKeys.IsUp(Keys.Z) && ManageKeys.IsUp(Keys.Q))
-            {
-                listPressed.Add(Keys.S);
-            }
-            else if (ManageKeys.IsPressed(Keys.Q) && ManageKeys.IsUp(Keys.Z) && ManageKeys.IsUp(Keys.S) && ManageKeys.IsUp(Keys.D))
-            {
-                listPressed.Add(Keys.Q);
-            }
-            else if (ManageKeys.IsPressed(Keys.Z) && ManageKeys.IsUp(Keys.Q) && ManageKeys.IsUp(Keys.S) && ManageKeys.IsUp(Keys.D))
-            {
-                listPressed.Add(Keys.Z);
-            }
-            */
-
 
             //mc.setMoveModeShift();
 
